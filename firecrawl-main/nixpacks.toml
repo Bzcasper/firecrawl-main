@@ -1,0 +1,29 @@
+# nixpacks.toml
+
+# 1. Setup Phase (optional commands you want to run before install):
+[phases.setup]
+commands = [
+  "echo '--- Nixpacks Setup Phase ---'"
+]
+
+# 2. Install Phase: Install dependencies
+[phases.install]
+commands = [
+  "npm install"
+]
+
+# 3. Build Phase (only necessary if you have a build script):
+[phases.build]
+commands = [
+  # Uncomment the next line if you have a build step (like TypeScript or bundling):
+  # "npm run build"
+]
+
+# 4. Start Phase: Command(s) to run your app in production
+[phases.start]
+commands = [
+  "node proxyManager.js"
+]
+
+# The final run command (if your Start phase is single-command only, you can do this):
+cmd = "node proxyManager.js"
