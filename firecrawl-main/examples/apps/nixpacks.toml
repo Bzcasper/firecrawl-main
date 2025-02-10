@@ -1,0 +1,26 @@
+# Specify that we want to use the Node provider
+providers = ["node"]
+
+# (Optional) Force the builder to use Railway’s Nixpacks image.
+buildImage = "ghcr.io/railwayapp/nixpacks:latest"
+
+[variables]
+# Set the Node.js version to use and ensure production mode.
+NIXPACKS_NODE_VERSION = "18"
+NODE_ENV = "production"
+
+[phases.setup]
+# Install any extra Nix packages you need – here we include Node.js.
+nixPkgs = ["nodejs"]
+
+[phases.install]
+# Install your project’s dependencies.
+cmds = ["npm install"]
+
+[phases.build]
+# Run your build script (adjust if your project uses a different build command).
+cmds = ["npm run build"]
+
+[start]
+# The start command should launch your application so that it listens on Railway’s assigned PORT.
+cmd = "npm run start"
